@@ -94,8 +94,8 @@ public class PlayState extends BasicGameState {
 			//sequencer.setTrackSolo(1, true);
 			int pitch = (int) (Math.random() * 36) + 48;
 			try {
-				t.add(new MidiEvent(new ShortMessage(ShortMessage.NOTE_ON, 0, pitch, 60), tick += 48));
-				t.add(new MidiEvent(new ShortMessage(ShortMessage.NOTE_OFF, 0, pitch, 60), tick + 48));
+				t.add(new MidiEvent(new ShortMessage(ShortMessage.NOTE_ON, 0, pitch, 60), tick += 48L));
+				t.add(new MidiEvent(new ShortMessage(ShortMessage.NOTE_OFF, 0, pitch, 60), tick + 48L));
 				System.out.println("added: " + (pitch + 36) + " " + NoteName.getNoteName(pitch)  + " tick: " + tick);
 			} catch (InvalidMidiDataException e) {
 				// TODO Auto-generated catch block
@@ -107,9 +107,9 @@ public class PlayState extends BasicGameState {
 			//sequencer.setTrackSolo(1, false);
 			int pitch =  (container.getHeight() - input.getMouseY())/(container.getHeight()/36) % 36;
 			try {
-				t.add(new MidiEvent(new ShortMessage(ShortMessage.NOTE_ON, 0, pitch + 48, 60), tick += 48));
-				t.add(new MidiEvent(new ShortMessage(ShortMessage.NOTE_OFF, 0, pitch + 48, 60), tick + 48));
-				System.out.println("added: " + (pitch + 48) + " " + NoteName.getNoteName(pitch)  + " tick: " + tick);
+				t.add(new MidiEvent(new ShortMessage(ShortMessage.NOTE_ON, 0, pitch + 48, 60), tick += 48L));
+				t.add(new MidiEvent(new ShortMessage(ShortMessage.NOTE_OFF, 0, pitch + 48, 60), tick + 48L));
+				System.out.println("added: " + (pitch + 48L) + " " + NoteName.getNoteName(pitch)  + " tick: " + tick);
 			} catch (InvalidMidiDataException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -146,6 +146,7 @@ public class PlayState extends BasicGameState {
 		if(input.isKeyPressed(Input.KEY_Q)){
 			sequencer.setTickPosition(0);
 			System.out.println("Set to beginning");
+		
 		}
 		if(sequencer.isRunning()){
 			System.out.println(	sequencer.getTickPosition());

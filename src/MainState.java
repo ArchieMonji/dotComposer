@@ -11,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class MainState extends BasicGameState {
 	private int stateID;
 	private ArrayList<Rectangle> rs = new ArrayList<Rectangle>();
-	NoteGrid ng = new NoteGrid(100,100);
+	NoteEditor ng = new NoteEditor(100,100);
 	public MainState(int id) {
 		stateID = id;
 	}

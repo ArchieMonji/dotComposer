@@ -10,8 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class MainState extends BasicGameState {
 	private int stateID;
-	private ArrayList<Rectangle> rs = new ArrayList<Rectangle>();
-	NoteEditor ng = new NoteEditor(100,100);
+	NoteEditor noteEditor = new NoteEditor(25,100);
 	public MainState(int id) {
 		stateID = id;
 	}
@@ -25,13 +24,13 @@ public class MainState extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		ng.render(container, game, g);
+		noteEditor.render(container, game, g);
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		ng.update(container, game, delta);
+		noteEditor.update(container, game, delta);
 	}
 
 	@Override

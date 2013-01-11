@@ -21,10 +21,10 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class NoteEditor {
-	public int numberOfBeats = 24;
+	public int numberOfBeats = 64;
 	public int pitchRange = 25;
-	public int NOTE_WIDTH = 40;
-	public int NOTE_HEIGHT = 20;
+	public int NOTE_WIDTH = 18;
+	public int NOTE_HEIGHT = 18;
 	//public ArrayList<Rectangle[]> grid = new ArrayList<Rectangle[]>();
 	//public ArrayList<MidiEvent[]> eventGrid = new ArrayList<MidiEvent[]>();
 	public ArrayList<Note> notes = new ArrayList<Note>();
@@ -108,10 +108,11 @@ public class NoteEditor {
 		for(int i = 1; i < numberOfBeats/RESOLUTION + 1; i++){
 			g.drawString(""+i, editorBounds.getX() + NOTE_WIDTH * (i - 1) * RESOLUTION, editorBounds.getY() - NOTE_HEIGHT);
 		}
-		g.drawString("R - Reset", 100, 10);
-		g.drawString("X - Cross", 100, 30);
-		g.drawString("Left Mouse - Add note", 300, 10);
-		g.drawString("Right Mouse - Remove note", 300, 30);
+		g.drawString(String.format("%-10s%s", "[R]"				, " : Reset"), 100, 10);
+		g.drawString(String.format("%-10s%s", "[SPACE]"			, " : Play"), 100, 30);
+		g.drawString(String.format("%-10s%s", "[ESC]"			, " : Close"), 100, 50);
+		g.drawString(String.format("%-10s%s", "[Left Mouse]"	, " : Add note"), 300, 10);
+		g.drawString(String.format("%-10s%s", "[Right Mouse]"	, " : Remove note"), 300, 30);
 	}
 
 	public void renderGuidelines(GameContainer container, StateBasedGame game, Graphics g)
@@ -122,7 +123,7 @@ public class NoteEditor {
 		}
 		for(int i = 1; i < numberOfBeats; i++){
 			float ex = editorBounds.getX();			
-			if(i % 4 == 0){
+			if(i % RESOLUTION == 0){
 				g.setColor(Color.white);
 			}
 			else{
@@ -258,7 +259,7 @@ public class NoteEditor {
 			}
 			noteMap.clear();
 		}
-		if(input.isKeyPressed(Input.KEY_X)){
+		if(input.isKeyPressed(Input.KEY_SPACE)){
 			/**sequencer.close();
 			seq.deleteTrack(track);
 			System.out.println("Track deleted...");
@@ -310,6 +311,11 @@ public class NoteEditor {
 			}
 			sequencer.setTickPosition(0);
 			sequencer.start();
+		}
+		if(input.isKeyPressed(Input.KEY_ESCAPE)){
+			sequencer.close();
+			s.close();
+			System.exit(0);
 		}
 	}
 
